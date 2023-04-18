@@ -5,7 +5,7 @@ variable "private_subnet_ids_az1" {
   type        = list(string)
   description = "The private subnet IDs to create ECS services in"
 }
-
+/*
 variable "private_subnet_ids_az2" {
   type        = list(string)
   description = "The private subnet IDs to create ECS services in"
@@ -15,7 +15,7 @@ variable "private_subnet_ids_az3" {
   type        = list(string)
   description = "The private subnet IDs to create ECS services in"
 }
-
+*/
 variable "public_subnet_ids" {
   type        = list(string)
   description = "The public subnet IDs to create ECS services in"
