@@ -18,9 +18,11 @@ module "acl-controller" {
   #consul_server_ca_cert_arn         = aws_secretsmanager_secret.ca_cert.arn #Do not configure for HCP
   ecs_cluster_arn                   = aws_ecs_cluster.clients.arn
   region                            = var.region
-  subnets                           = var.private_subnet_ids
+  subnets                           = var.private_subnet_ids_az1
   security_groups = [var.security_group_id]
   name_prefix = local.secret_prefix
+  consul_partitions_enabled = true 
+  consul_partition = "default"
 }
 
 resource "aws_iam_role" "frontend-task-role" {
@@ -114,7 +116,7 @@ module "frontend" {
   consul_datacenter = var.datacenter
   consul_image      = "public.ecr.aws/hashicorp/consul-enterprise:${var.consul_version}-ent"
   consul_partition               = "default"
-  consul_namespace               = "default"
+  consul_namespace               = "az1"
   tls                       = true
   consul_server_ca_cert_arn = aws_secretsmanager_secret.ca_cert.arn
   gossip_key_secret_arn     = aws_secretsmanager_secret.gossip_key.arn
@@ -130,7 +132,7 @@ resource "aws_ecs_service" "frontend" {
   desired_count   = 1
 
   network_configuration {
-    subnets         = var.private_subnet_ids
+    subnets         = var.private_subnet_ids_az1
     security_groups = [var.security_group_id]
   }
 
@@ -255,7 +257,7 @@ module "public-api" {
   consul_datacenter = var.datacenter
   consul_image      = "public.ecr.aws/hashicorp/consul-enterprise:${var.consul_version}-ent"
   consul_partition               = "default"
-  consul_namespace               = "default"
+  consul_namespace               = "az1"
   tls                       = true
   consul_server_ca_cert_arn = aws_secretsmanager_secret.ca_cert.arn
   gossip_key_secret_arn     = aws_secretsmanager_secret.gossip_key.arn
@@ -271,7 +273,7 @@ resource "aws_ecs_service" "public-api" {
   desired_count   = 1
 
   network_configuration {
-    subnets         = var.private_subnet_ids
+    subnets         = var.private_subnet_ids_az1
     security_groups = [var.security_group_id]
   }
 
@@ -370,7 +372,7 @@ module "payment-api" {
   consul_datacenter = var.datacenter
   consul_image      = "public.ecr.aws/hashicorp/consul-enterprise:${var.consul_version}-ent"
   consul_partition               = "default"
-  consul_namespace               = "default"
+  consul_namespace               = "az1"
   tls                       = true
   consul_server_ca_cert_arn = aws_secretsmanager_secret.ca_cert.arn
   gossip_key_secret_arn     = aws_secretsmanager_secret.gossip_key.arn
@@ -386,7 +388,7 @@ resource "aws_ecs_service" "payment-api" {
   desired_count   = 1
 
   network_configuration {
-    subnets         = var.private_subnet_ids
+    subnets         = var.private_subnet_ids_az1
     security_groups = [var.security_group_id]
   }
 
@@ -496,7 +498,7 @@ module "product-api" {
   consul_datacenter = var.datacenter
   consul_image      = "public.ecr.aws/hashicorp/consul-enterprise:${var.consul_version}-ent"
   consul_partition               = "default"
-  consul_namespace               = "default"
+  consul_namespace               = "az1"
   tls                       = true
   consul_server_ca_cert_arn = aws_secretsmanager_secret.ca_cert.arn
   gossip_key_secret_arn     = aws_secretsmanager_secret.gossip_key.arn
@@ -512,7 +514,7 @@ resource "aws_ecs_service" "product-api" {
   desired_count   = 1
 
   network_configuration {
-    subnets         = var.private_subnet_ids
+    subnets         = var.private_subnet_ids_az1
     security_groups = [var.security_group_id]
   }
 
@@ -619,7 +621,7 @@ module "product-db" {
   consul_datacenter = var.datacenter
   consul_image      = "public.ecr.aws/hashicorp/consul-enterprise:${var.consul_version}-ent"
   consul_partition               = "default"
-  consul_namespace               = "default"
+  consul_namespace               = "az1"
   tls                       = true
   consul_server_ca_cert_arn = aws_secretsmanager_secret.ca_cert.arn
   gossip_key_secret_arn     = aws_secretsmanager_secret.gossip_key.arn
@@ -635,7 +637,7 @@ resource "aws_ecs_service" "product-db" {
   desired_count   = 1
 
   network_configuration {
-    subnets         = var.private_subnet_ids
+    subnets         = var.private_subnet_ids_az1
     security_groups = [var.security_group_id]
   }
 
