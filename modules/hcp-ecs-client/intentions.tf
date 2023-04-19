@@ -1,6 +1,6 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
-
+/*
 resource "consul_config_entry" "service_intentions_deny" {
   name = "*"
   kind = "service-intentions"
@@ -66,3 +66,13 @@ resource "consul_config_entry" "service_intentions_payment_api" {
     ]
   })
 }
+*/
+
+resource "consul_intention" "all" {
+  source_name      = "*"
+  source_namespace = "az1"
+  destination_name = "*"
+  destination_namespace = "az1"
+  action           = "allow"
+}
+
