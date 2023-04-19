@@ -9,6 +9,7 @@ resource "consul_config_entry" "service_intentions_deny" {
     Sources = [
       {
         Name   = "*"
+        Namespace = "az1"
         Action = "deny"
       }
     ]
@@ -23,6 +24,7 @@ resource "consul_config_entry" "service_intentions_product_api" {
     Sources = [
       {
         Name       = "public-api"
+        Namespace = "az1"
         Action     = "allow"
         Precedence = 9
         Type       = "consul"
@@ -39,6 +41,7 @@ resource "consul_config_entry" "service_intentions_product_db" {
     Sources = [
       {
         Name       = "product-api"
+        Namespace = "az1"
         Action     = "allow"
         Precedence = 9
         Type       = "consul"
@@ -55,6 +58,7 @@ resource "consul_config_entry" "service_intentions_payment_api" {
     Sources = [
       {
         Name       = "public-api"
+        Namespace = "az1"
         Action     = "allow"
         Precedence = 9
         Type       = "consul"
