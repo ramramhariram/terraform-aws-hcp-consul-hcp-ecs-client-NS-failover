@@ -76,3 +76,11 @@ resource "consul_intention" "all" {
   action           = "allow"
 }
 
+#adding second intention for AZ2/namespace
+resource "consul_intention" "all2" {
+  source_name      = "*"
+  source_namespace = "az1"
+  destination_name = "*"
+  destination_namespace = "az2"
+  action           = "allow"
+}
