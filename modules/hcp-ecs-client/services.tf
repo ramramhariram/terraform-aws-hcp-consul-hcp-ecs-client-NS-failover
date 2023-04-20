@@ -787,9 +787,9 @@ resource "aws_ecs_service" "payment-api2" {
   propagate_tags         = "TASK_DEFINITION"
   enable_execute_command = true
 }
-/*
-resource "aws_iam_role" "product-api-task-role" {
-  name = "product_api_${local.scope}_task_role"
+
+resource "aws_iam_role" "product-api-task-role2" {
+  name = "product_api_${local.scope}_task_role2"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -804,8 +804,8 @@ resource "aws_iam_role" "product-api-task-role" {
   })
 }
 
-resource "aws_iam_role" "product-api-execution-role" {
-  name = "product_api_${local.scope}_execution_role"
+resource "aws_iam_role" "product-api-execution-role2" {
+  name = "product_api_${local.scope}_execution_role2"
   path = "/ecs/"
 
   assume_role_policy = jsonencode({
@@ -822,13 +822,13 @@ resource "aws_iam_role" "product-api-execution-role" {
   })
 }
 
-module "product-api" {
+module "product-api2" {
   source  = "hashicorp/consul-ecs/aws//modules/mesh-task"
   version = "~> 0.6.0"
 
-  family         = "product-api"
-  task_role      = aws_iam_role.product-api-task-role
-  execution_role = aws_iam_role.product-api-execution-role
+  family         = "product-api2"
+  task_role      = aws_iam_role.product-api-task-_task_role2
+  execution_role = aws_iam_role.product-api-execution-role2
   container_definitions = [
     {
       name      = "product-api"
@@ -860,7 +860,7 @@ module "product-api" {
         options = {
           awslogs-group         = aws_cloudwatch_log_group.log_group.name
           awslogs-region        = var.region
-          awslogs-stream-prefix = "product-api"
+          awslogs-stream-prefix = "product-api2"
         }
       }
     }
@@ -878,7 +878,7 @@ module "product-api" {
     options = {
       awslogs-group         = aws_cloudwatch_log_group.log_group.name
       awslogs-region        = var.region
-      awslogs-stream-prefix = "product-api"
+      awslogs-stream-prefix = "product-api2"
     }
   }
 
@@ -887,9 +887,10 @@ module "product-api" {
   
   retry_join        = var.client_retry_join
   consul_datacenter = var.datacenter
+  consul_service_name = "product-api"
   consul_image      = "public.ecr.aws/hashicorp/consul-enterprise:${var.consul_version}-ent"
   consul_partition               = "default"
-  consul_namespace               = "az1"
+  consul_namespace               = "az2"
   tls                       = true
   consul_server_ca_cert_arn = aws_secretsmanager_secret.ca_cert.arn
   gossip_key_secret_arn     = aws_secretsmanager_secret.gossip_key.arn
@@ -898,14 +899,14 @@ module "product-api" {
   acls                           = true
 }
 
-resource "aws_ecs_service" "product-api" {
-  name            = "product-api"
-  cluster         = aws_ecs_cluster.clients.arn
-  task_definition = module.product-api.task_definition_arn
+resource "aws_ecs_service" "product-api2" {
+  name            = "product-api2"
+  cluster         = aws_ecs_cluster.clients2.arn
+  task_definition = module.product-api2.task_definition_arn
   desired_count   = 1
 
   network_configuration {
-    subnets         = var.private_subnet_ids_az1
+    subnets         = var.private_subnet_ids_az2
     security_groups = [var.security_group_id]
   }
 
@@ -914,8 +915,8 @@ resource "aws_ecs_service" "product-api" {
   enable_execute_command = true
 }
 
-resource "aws_iam_role" "product-db-task-role" {
-  name = "product_db_${local.scope}_task_role"
+resource "aws_iam_role" "product-db-task-role2" {
+  name = "product_db_${local.scope}_task_role2"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -930,8 +931,8 @@ resource "aws_iam_role" "product-db-task-role" {
   })
 }
 
-resource "aws_iam_role" "product-db-execution-role" {
-  name = "product_db_${local.scope}_execution_role"
+resource "aws_iam_role" "product-db-execution-role2" {
+  name = "product_db_${local.scope}_execution_role2"
   path = "/ecs/"
 
   assume_role_policy = jsonencode({
@@ -948,13 +949,13 @@ resource "aws_iam_role" "product-db-execution-role" {
   })
 }
 
-module "product-db" {
+module "product-db2" {
   source  = "hashicorp/consul-ecs/aws//modules/mesh-task"
   version = "~> 0.6.0"
 
-  family         = "product-db"
-  task_role      = aws_iam_role.product-db-task-role
-  execution_role = aws_iam_role.product-db-execution-role
+  family         = "product-db2"
+  task_role      = aws_iam_role.product-db-task-role2
+  execution_role = aws_iam_role.product-db-execution-role2
   container_definitions = [
     {
       name      = "product-db"
@@ -1010,9 +1011,10 @@ module "product-db" {
   
   retry_join        = var.client_retry_join
   consul_datacenter = var.datacenter
+  consul_service_name = "product-db"
   consul_image      = "public.ecr.aws/hashicorp/consul-enterprise:${var.consul_version}-ent"
   consul_partition               = "default"
-  consul_namespace               = "az1"
+  consul_namespace               = "az2"
   tls                       = true
   consul_server_ca_cert_arn = aws_secretsmanager_secret.ca_cert.arn
   gossip_key_secret_arn     = aws_secretsmanager_secret.gossip_key.arn
@@ -1021,14 +1023,14 @@ module "product-db" {
   acls                           = true
 }
 
-resource "aws_ecs_service" "product-db" {
-  name            = "product-db"
-  cluster         = aws_ecs_cluster.clients.arn
-  task_definition = module.product-db.task_definition_arn
+resource "aws_ecs_service" "product-db2" {
+  name            = "product-db2"
+  cluster         = aws_ecs_cluster.clients2.arn
+  task_definition = module.product-db2.task_definition_arn
   desired_count   = 1
 
   network_configuration {
-    subnets         = var.private_subnet_ids_az1
+    subnets         = var.private_subnet_ids_az2
     security_groups = [var.security_group_id]
   }
 
@@ -1036,4 +1038,3 @@ resource "aws_ecs_service" "product-db" {
   propagate_tags         = "TASK_DEFINITION"
   enable_execute_command = true
 }
-*/
