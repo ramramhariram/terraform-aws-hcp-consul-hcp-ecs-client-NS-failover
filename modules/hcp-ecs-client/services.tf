@@ -27,7 +27,7 @@ module "acl-controller" {
 #adding a second acl_controller for failover 
 
 
-module "acl-controller" {
+module "acl-controller2" {
   source  = "hashicorp/consul-ecs/aws//modules/acl-controller"
   version = "0.6.0"
 
