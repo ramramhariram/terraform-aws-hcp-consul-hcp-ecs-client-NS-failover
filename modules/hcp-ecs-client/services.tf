@@ -827,7 +827,7 @@ module "product-api2" {
   version = "~> 0.6.0"
 
   family         = "product-api2"
-  task_role      = aws_iam_role.product-api-task-_task_role2
+  task_role      = aws_iam_role.product-api-task-role2
   execution_role = aws_iam_role.product-api-execution-role2
   container_definitions = [
     {
