@@ -759,7 +759,7 @@ module "payment-api2" {
 
   
   retry_join        = var.client_retry_join
-  consul_service_name = "payment_api"
+  consul_service_name = "payment-api"
   consul_datacenter = var.datacenter
   consul_image      = "public.ecr.aws/hashicorp/consul-enterprise:${var.consul_version}-ent"
   consul_partition               = "default"
