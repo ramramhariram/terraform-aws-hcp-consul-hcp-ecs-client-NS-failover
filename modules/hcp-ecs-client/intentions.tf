@@ -86,7 +86,7 @@ resource "consul_intention" "all2" {
 }
 
 #adding second intention for AZ2/namespace
-resource "consul_intention" "all2" {
+resource "consul_intention" "all3" {
   source_name      = "*"
   source_namespace = "az2"
   destination_name = "*"
