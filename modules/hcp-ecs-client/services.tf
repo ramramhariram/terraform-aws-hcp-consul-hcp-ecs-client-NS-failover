@@ -1251,6 +1251,7 @@ module "example_server_app2" {
   consul_image      = "public.ecr.aws/hashicorp/consul-enterprise:${var.consul_version}-ent"
   consul_partition               = "default"
   consul_namespace               = "az2"
+  consul_service_name = "example-server-app"
   tls                       = true
   consul_server_ca_cert_arn = aws_secretsmanager_secret.ca_cert.arn
   gossip_key_secret_arn     = aws_secretsmanager_secret.gossip_key.arn
