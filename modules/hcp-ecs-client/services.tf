@@ -1124,7 +1124,7 @@ module "example_client_app" {
     environment = [
       {
         name  = "NAME"
-        value = "${var.name}-example-client-app"
+        value = "example-client-app"
       },
       {
         name  = "UPSTREAM_URIS"
