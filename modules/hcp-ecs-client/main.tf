@@ -55,6 +55,25 @@ resource "aws_ecs_cluster" "clients2" {
   depends_on = [var.nat_public_ips]
 }
 
+#adding two more to test fake services 
+
+#adding a second cluster for failover
+resource "aws_ecs_cluster" "clients3" {
+  name               = "hcp-ecs-cluster-${random_id.id.dec}-3"
+  capacity_providers = ["FARGATE"]
+
+  depends_on = [var.nat_public_ips]
+}
+
+#adding a second cluster for failover
+resource "aws_ecs_cluster" "clients4" {
+  name               = "hcp-ecs-cluster-${random_id.id.dec}-4"
+  capacity_providers = ["FARGATE"]
+
+  depends_on = [var.nat_public_ips]
+}
+
+
 
 resource "random_id" "id" {
   byte_length = 2
