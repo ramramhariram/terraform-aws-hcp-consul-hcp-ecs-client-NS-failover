@@ -1261,7 +1261,7 @@ module "example_server_app2" {
 
 
 resource "aws_ecs_service" "example_client_app" {
-  name            = "$example-client-app"
+  name            = "example-client-app"
   cluster         = aws_ecs_cluster.clients3.arn
   task_definition = module.example_client_app.task_definition_arn
   desired_count   = 1
