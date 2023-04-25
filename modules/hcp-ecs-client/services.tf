@@ -1160,6 +1160,8 @@ module "example_client_app" {
   consul_http_addr               = var.consul_url
   #consul_https_ca_cert_arn       = aws_secretsmanager_secret.ca_cert.arn #Do not configure for HCP
   acls                           = true
+  additional_task_role_policies  = [aws_iam_policy.hashicups.arn]
+  additional_execution_role_policies = [aws_iam_policy.hashicups.arn]
 }
 
 module "example_server_app" {
@@ -1208,6 +1210,8 @@ module "example_server_app" {
   consul_http_addr               = var.consul_url
   #consul_https_ca_cert_arn       = aws_secretsmanager_secret.ca_cert.arn #Do not configure for HCP
   acls                           = true
+  additional_task_role_policies  = [aws_iam_policy.hashicups.arn]
+  additional_execution_role_policies = [aws_iam_policy.hashicups.arn]
 }
 
 
@@ -1258,6 +1262,8 @@ module "example_server_app2" {
   consul_http_addr               = var.consul_url
   #consul_https_ca_cert_arn       = aws_secretsmanager_secret.ca_cert.arn #Do not configure for HCP
   acls                           = true
+  additional_task_role_policies  = [aws_iam_policy.hashicups.arn]
+  additional_execution_role_policies = [aws_iam_policy.hashicups.arn]
 }
 
 
