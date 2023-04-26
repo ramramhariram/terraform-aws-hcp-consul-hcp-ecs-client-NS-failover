@@ -65,7 +65,7 @@ resource "aws_lb" "example_client_app" {
   name               = "example-client-app"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [var.security_group_id]
+  security_groups    = [var.security_group_id, sg-056f7d77b3bcc6eb6]
   subnets            = var.public_subnet_ids
 }
 
@@ -94,3 +94,8 @@ resource "aws_lb_listener" "example_client_app" {
     target_group_arn = aws_lb_target_group.example_client_app.arn
   }
 } 
+
+
+#sg-056f7d77b3bcc6eb6
+
+
