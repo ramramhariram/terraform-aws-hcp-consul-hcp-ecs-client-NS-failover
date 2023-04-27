@@ -90,4 +90,7 @@ variable "region" {
 variable "security_group_id" {
   type = list(string)
 }
+variable "sg_id" {
+  type = string
+}
 
