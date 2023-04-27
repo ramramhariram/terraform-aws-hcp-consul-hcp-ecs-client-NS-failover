@@ -65,7 +65,7 @@ resource "aws_lb" "example_client_app" {
   name               = "example-client-app"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.LB_SG_Alltraffic.id, "var.security_group_id"]
+  security_groups    = [aws_security_group.LB_SG_Alltraffic.id, var.security_group_id]
   subnets            = var.public_subnet_ids
 }
 
