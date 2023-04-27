@@ -37,7 +37,7 @@ resource "aws_security_group_rule" "allow_http_inbound" {
   protocol    = "tcp"
   cidr_blocks = var.allowed_http_cidr_blocks
 
-  security_group_id = var.security_group_id
+  security_group_id = [var.security_group_id]
 }
 
 resource "aws_ecs_cluster" "clients" {
