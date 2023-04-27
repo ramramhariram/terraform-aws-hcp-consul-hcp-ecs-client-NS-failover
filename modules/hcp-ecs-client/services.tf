@@ -19,7 +19,7 @@ module "acl-controller" {
   ecs_cluster_arn                   = aws_ecs_cluster.clients.arn
   region                            = var.region
   subnets                           = var.private_subnet_ids_az1
-  security_groups = [var.security_group_id]
+  security_groups = var.security_group_id
   name_prefix = local.secret_prefix
   consul_partitions_enabled = true 
   consul_partition = "default"
@@ -45,7 +45,7 @@ module "acl-controller2" {
   ecs_cluster_arn                   = aws_ecs_cluster.clients2.arn
   region                            = var.region
   subnets                           = var.private_subnet_ids_az2
-  security_groups = [var.security_group_id]
+  security_groups = var.security_group_id
   name_prefix = "${local.secret_prefix}-2"
   consul_partitions_enabled = true 
   consul_partition = "default"
@@ -160,7 +160,7 @@ resource "aws_ecs_service" "frontend" {
 
   network_configuration {
     subnets         = var.private_subnet_ids_az1
-    security_groups = [var.security_group_id]
+    security_groups = var.security_group_id
   }
 
   load_balancer {
@@ -301,7 +301,7 @@ resource "aws_ecs_service" "public-api" {
 
   network_configuration {
     subnets         = var.private_subnet_ids_az1
-    security_groups = [var.security_group_id]
+    security_groups = var.security_group_id
   }
 
   load_balancer {
@@ -416,7 +416,7 @@ resource "aws_ecs_service" "payment-api" {
 
   network_configuration {
     subnets         = var.private_subnet_ids_az1
-    security_groups = [var.security_group_id]
+    security_groups = var.security_group_id
   }
 
   launch_type            = "FARGATE"
@@ -542,7 +542,7 @@ resource "aws_ecs_service" "product-api" {
 
   network_configuration {
     subnets         = var.private_subnet_ids_az1
-    security_groups = [var.security_group_id]
+    security_groups = var.security_group_id
   }
 
   launch_type            = "FARGATE"
@@ -665,7 +665,7 @@ resource "aws_ecs_service" "product-db" {
 
   network_configuration {
     subnets         = var.private_subnet_ids_az1
-    security_groups = [var.security_group_id]
+    security_groups = var.security_group_id
   }
 
   launch_type            = "FARGATE"
@@ -780,7 +780,7 @@ resource "aws_ecs_service" "payment-api2" {
 
   network_configuration {
     subnets         = var.private_subnet_ids_az2
-    security_groups = [var.security_group_id]
+    security_groups = var.security_group_id
   }
 
   launch_type            = "FARGATE"
@@ -907,7 +907,7 @@ resource "aws_ecs_service" "product-api2" {
 
   network_configuration {
     subnets         = var.private_subnet_ids_az2
-    security_groups = [var.security_group_id]
+    security_groups = var.security_group_id
   }
 
   launch_type            = "FARGATE"
@@ -1031,7 +1031,7 @@ resource "aws_ecs_service" "product-db2" {
 
   network_configuration {
     subnets         = var.private_subnet_ids_az2
-    security_groups = [var.security_group_id]
+    security_groups = var.security_group_id
   }
 
   launch_type            = "FARGATE"
@@ -1062,7 +1062,7 @@ module "acl_controller3" {
   ecs_cluster_arn                   = aws_ecs_cluster.clients3.arn
   region                            = var.region
   subnets                           = var.private_subnet_ids_az1
-  security_groups = [var.security_group_id]
+  security_groups = var.security_group_id
   name_prefix = "${local.secret_prefix}-3"
   consul_partitions_enabled = true 
   consul_partition = "default"
@@ -1086,7 +1086,7 @@ module "acl_controller4" {
   ecs_cluster_arn                   = aws_ecs_cluster.clients4.arn
   region                            = var.region
   subnets                           = var.private_subnet_ids_az2
-  security_groups = [var.security_group_id]
+  security_groups = var.security_group_id
   name_prefix = "${local.secret_prefix}-4"
   consul_partitions_enabled = true 
   consul_partition = "default"
@@ -1275,7 +1275,7 @@ resource "aws_ecs_service" "example_client_app" {
   desired_count   = 1
   network_configuration {
     subnets         = var.private_subnet_ids_az1
-    security_groups = [var.security_group_id]
+    security_groups = var.security_group_id
   }
   launch_type    = "FARGATE"
   propagate_tags = "TASK_DEFINITION"
@@ -1296,7 +1296,7 @@ resource "aws_ecs_service" "example_server_app" {
   desired_count   = 1
   network_configuration {
     subnets         = var.private_subnet_ids_az1
-    security_groups = [var.security_group_id]
+    security_groups = var.security_group_id
   }
   launch_type            = "FARGATE"
   propagate_tags         = "TASK_DEFINITION"
@@ -1312,7 +1312,7 @@ resource "aws_ecs_service" "example_server_app2" {
   desired_count   = 1
   network_configuration {
     subnets         = var.private_subnet_ids_az2
-    security_groups = [var.security_group_id]
+    security_groups = var.security_group_id
   }
   launch_type            = "FARGATE"
   propagate_tags         = "TASK_DEFINITION"
