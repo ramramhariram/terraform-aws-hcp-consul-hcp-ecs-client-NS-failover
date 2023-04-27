@@ -88,6 +88,6 @@ variable "region" {
 }
 
 variable "security_group_id" {
-  type = string
+  type = list(string)
 }
 
