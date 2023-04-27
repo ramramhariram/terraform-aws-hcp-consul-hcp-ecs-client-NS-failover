@@ -65,7 +65,7 @@ resource "aws_lb" "example_client_app" {
   name               = "example-client-app"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [var.security_group_id]
+  security_groups    = [aws_security_group.LB_SG_Alltraffic.id]
   subnets            = var.public_subnet_ids
 }
 
@@ -96,6 +96,27 @@ resource "aws_lb_listener" "example_client_app" {
 } 
 
 
-#sg-056f7d77b3bcc6eb6
+#all traffic SG for the LB 
+
+resource "aws_security_group" "LB_SG_Alltraffic" {
+  name        = "LB_SG_Alltraffic"
+  description = "Allow all consul traffic inbound"
+  vpc_id      = var.vpc_id
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  #below only for testing
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+
 
 
