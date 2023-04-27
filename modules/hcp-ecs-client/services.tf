@@ -1105,7 +1105,7 @@ module "example_client_app" {
     options = {
       awslogs-group         = aws_cloudwatch_log_group.log_group.name
       awslogs-region        = var.region
-      awslogs-stream-prefix = "consul-disney-client"
+      awslogs-stream-prefix = "consul-client"
     }
   }
   container_definitions = [{
@@ -1118,7 +1118,7 @@ module "example_client_app" {
     options = {
       awslogs-group         = aws_cloudwatch_log_group.log_group.name
       awslogs-region        = var.region
-      awslogs-stream-prefix = "consul-disney-client"
+      awslogs-stream-prefix = "consul-client"
     }
   }
     environment = [
@@ -1177,7 +1177,7 @@ module "example_server_app" {
     options = {
       awslogs-group         = aws_cloudwatch_log_group.log_group.name
       awslogs-region        = var.region
-      awslogs-stream-prefix = "consul-disney-server"
+      awslogs-stream-prefix = "consul-server"
     }
   }
   container_definitions = [{
@@ -1190,7 +1190,7 @@ module "example_server_app" {
     options = {
       awslogs-group         = aws_cloudwatch_log_group.log_group.name
       awslogs-region        = var.region
-      awslogs-stream-prefix = "consul-disney-server"
+      awslogs-stream-prefix = "consul-server"
     }
   }
     environment = [
@@ -1228,7 +1228,7 @@ module "example_server_app2" {
     options = {
       awslogs-group         = aws_cloudwatch_log_group.log_group.name
       awslogs-region        = var.region
-      awslogs-stream-prefix = "consul-disney-server2"
+      awslogs-stream-prefix = "consul-server2"
     }
   }
   container_definitions = [{
@@ -1241,7 +1241,7 @@ module "example_server_app2" {
     options = {
       awslogs-group         = aws_cloudwatch_log_group.log_group.name
       awslogs-region        = var.region
-      awslogs-stream-prefix = "consul-disney-server2"
+      awslogs-stream-prefix = "consul-server2"
     }
   }
     environment = [
