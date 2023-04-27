@@ -423,7 +423,7 @@ resource "aws_ecs_service" "payment-api" {
   propagate_tags         = "TASK_DEFINITION"
   enable_execute_command = true
 }
-
+/*
 resource "aws_iam_role" "product-api-task-role" {
   name = "product_api_${local.scope}_task_role"
   assume_role_policy = jsonencode({
@@ -549,7 +549,7 @@ resource "aws_ecs_service" "product-api" {
   propagate_tags         = "TASK_DEFINITION"
   enable_execute_command = true
 }
-
+*/
 resource "aws_iam_role" "product-db-task-role" {
   name = "product_db_${local.scope}_task_role"
   assume_role_policy = jsonencode({
