@@ -1145,7 +1145,7 @@ module "example_client_app" {
   upstreams = [
     {
       destinationName = "example-server-app"
-      #destinationNamespace = "az2"
+      destinationNamespace = "az2"
       localBindPort  = 1234
     }
   ]
