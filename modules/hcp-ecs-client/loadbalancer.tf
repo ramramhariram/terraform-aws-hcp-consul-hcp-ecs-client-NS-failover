@@ -1,6 +1,6 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
-
+/*
 resource "aws_lb" "ingress" {
   name               = "${local.secret_prefix}-ingress"
   internal           = false
@@ -54,7 +54,7 @@ resource "aws_lb_listener_rule" "public-api" {
   }
 }
 
-
+*/
 ###LB for fake service
 
 

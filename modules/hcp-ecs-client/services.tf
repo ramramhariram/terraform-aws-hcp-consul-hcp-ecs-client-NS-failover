@@ -1,4 +1,4 @@
-# Copyright (c) HashiCorp, Inc.
+/*# Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
 module "acl-controller" {
@@ -1038,7 +1038,7 @@ resource "aws_ecs_service" "product-db2" {
   propagate_tags         = "TASK_DEFINITION"
   enable_execute_command = true
 }
-
+*/
 
 #####FAKE_Services
 
