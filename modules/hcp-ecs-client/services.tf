@@ -1300,7 +1300,7 @@ resource "aws_ecs_service" "example_server_app" {
   }
   launch_type            = "FARGATE"
   propagate_tags         = "TASK_DEFINITION"
-  enable_execute_command = true
+  enable_execute_command = true 
 }
 
 # The server app is part of the service mesh. It's called
