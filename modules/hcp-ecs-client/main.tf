@@ -42,7 +42,7 @@ resource "aws_security_group_rule" "allow_http_inbound" {
 
 resource "aws_ecs_cluster" "clients" {
   name               = "hcp-ecs-cluster-${random_id.id.dec}"
-  capacity_providers = ["FARGATE"]
+  #capacity_providers = ["FARGATE"]
 
   depends_on = [var.nat_public_ips]
 }
@@ -50,9 +50,40 @@ resource "aws_ecs_cluster" "clients" {
 #adding a second cluster for failover
 resource "aws_ecs_cluster" "clients2" {
   name               = "hcp-ecs-cluster-${random_id.id.dec}-2"
-  capacity_providers = ["FARGATE"]
+  #capacity_providers = ["FARGATE"]
 
   depends_on = [var.nat_public_ips]
+}
+
+resource "aws_ecs_cluster_capacity_providers" "clients" {
+  cluster_name = aws_ecs_cluster.clients.name
+
+  capacity_providers = ["FARGATE"]
+
+}
+
+
+resource "aws_ecs_cluster_capacity_providers" "clients2" {
+  cluster_name = aws_ecs_cluster.clients2.name
+
+  capacity_providers = ["FARGATE"]
+
+}
+
+
+resource "aws_ecs_cluster_capacity_providers" "clients3" {
+  cluster_name = aws_ecs_cluster.clients3.name
+
+  capacity_providers = ["FARGATE"]
+
+}
+
+
+resource "aws_ecs_cluster_capacity_providers" "clients4" {
+  cluster_name = aws_ecs_cluster.clients4.name
+
+  capacity_providers = ["FARGATE"]
+
 }
 
 #adding two more to test fake services 
@@ -60,7 +91,7 @@ resource "aws_ecs_cluster" "clients2" {
 #adding a second cluster for failover
 resource "aws_ecs_cluster" "clients3" {
   name               = "hcp-ecs-cluster-${random_id.id.dec}-3"
-  capacity_providers = ["FARGATE"]
+  #capacity_providers = ["FARGATE"]
 
   depends_on = [var.nat_public_ips]
 }
@@ -68,7 +99,7 @@ resource "aws_ecs_cluster" "clients3" {
 #adding a second cluster for failover
 resource "aws_ecs_cluster" "clients4" {
   name               = "hcp-ecs-cluster-${random_id.id.dec}-4"
-  capacity_providers = ["FARGATE"]
+  #capacity_providers = ["FARGATE"]
 
   depends_on = [var.nat_public_ips]
 }
